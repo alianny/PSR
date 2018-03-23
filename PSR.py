@@ -12,45 +12,33 @@ from datetime import datetime
 
 print "Python Program Running..."
 
+#Application will call python is the .csv dile does not exist or if the time requested is not up to date
 def main():
     print "Evaluating Arguments..."
-
-    if len(sys.argv) < 3:
+    # 1:Site #2: TimeFrame #3: Symbol
+    if len(sys.argv) < 4: 
         print "Argument Number Problem: Usage: %s querystring" % sys.argv[0]
+        time.sleep(5.5)
         #RETURN SOMETHING
         return
     
-
+    time.sleep(2.5)
     print "Launching Chrome Browser..."
-    # specify the url
+    # Use Chrome
     WebBrowser = webdriver.Chrome()
-
+    # Go to Link provided
+    print "Going to NASDAQ..."
     WebBrowser.get(sys.argv[1])
 
-    print "Going to NASDAQ..."
     #Update if other website ever needed
     quote_list = nasdaq(sys.argv[2], WebBrowser )
     for m in quote_list:
         print m
-    
-    print "Creating CSV FILE..."
-    # query the website and return the html to the variable 'page'
-    #page = urllib2.urlopen(sys.argv[1])
-
-    # parse the html using beautiful soup and store in variable `soup`
-    #soup = BeautifulSoup(table, 'html.parser')
-
+    time.sleep(2.5)
+    print 
     if(WebBrowser):
         WebBrowser.close()
-    # get the index price
-    #price_box = soup.find_all("tbody")
-    #price = price_box.text
-    #print price_box
 
-    # open a csv file with append, so old data will not be erased
-    with open('index.csv', 'a') as csv_file:
-       writer = csv.writer(csv_file)
-       writer.writerow([quote_list])
 
 def nasdaq( sysArugments, Web ):
 
