@@ -72,7 +72,9 @@ def nasdaq( sysArugments, Web ):
     print( "Updating Website...")
     putQuotes = '''%s'''% sysArugments
     find_option_number = re.findall(r'\d+', sysArugments)
-    waitTime = .5 * float(find_option_number[0])
+    print ("Option Picked " ) 
+    print(float(find_option_number[0]))
+    waitTime = float(find_option_number[0])
     #//*[@id="ddlTimeFrame"]/option[1]
     Web.find_element_by_xpath(putQuotes).click()
 
